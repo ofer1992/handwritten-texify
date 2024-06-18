@@ -63,7 +63,7 @@ stage.on('mousemove touchmove', function () {
     if (!isPaint) {
         return;
     }
-
+    
     if (mode === 'brush') {
         context.globalCompositeOperation = 'source-over';
     }
@@ -91,19 +91,16 @@ stage.on('mousemove touchmove', function () {
     layer.batchDraw();
 });
 
-// var select = document.getElementById('tool');
-// select.addEventListener('change', function () {
-//     mode = select.value;
-// });
-// Export canvas as image
-document.getElementById('export').addEventListener('click', () => {
-    const dataURL = stage.toDataURL({ pixelRatio: 3 });
-    const link = document.createElement('a');
-    link.href = dataURL;
-    link.download = 'drawing.png';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+const select = document.getElementById('tool');
+select.addEventListener('click', function () {
+    if (mode === 'brush') {
+        mode = 'eraser';
+        select.textContent = 'Brush';
+    } else {
+        mode = 'brush';
+        select.textContent = 'Eraser';
+    }
+
 });
 
 // Process canvas image
