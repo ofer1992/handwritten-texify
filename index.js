@@ -1,13 +1,5 @@
 import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
 
-async function tex() {
-
-    // Generate LaTeX from image
-    const image = 'https://huggingface.co/datasets/Xenova/transformers.js-docs/resolve/main/latex2.png';
-    console.log(latex);
-    return latex;
-}
-
 // Since we will download the model from the Hugging Face Hub, we can skip the local model check
 env.allowLocalModels = false;
 
@@ -20,7 +12,7 @@ const latexContainer = document.getElementById('latex');
 // Create a new object detection pipeline
 status.textContent = 'Loading model...';
 // const detector = await pipeline('object-detection', 'Xenova/detr-resnet-50');
-const texify = await pipeline('image-to-text', 'Xenova/texify');
+const texify = await pipeline('image-to-text', 'Xenova/texify', {device: 'webgpu'});
 status.textContent = 'Ready';
 
 fileUpload.addEventListener('change', function (e) {
@@ -45,11 +37,12 @@ fileUpload.addEventListener('change', function (e) {
 
 
 // Detect objects in the image
-async function detect(img) {
+export async function detect(img) {
     status.textContent = 'Analysing...';
     const latex = await texify(img, { max_new_tokens: 384 });
     status.textContent = '';
     latexContainer.textContent = latex[0].generated_text;
+    MathJax.typesetPromise([latexContainer]);
     console.log(latex);
 }
 

@@ -5,11 +5,19 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Transformers.js - Object Detection demo</title>
+    <title>Texify demo</title>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/konva@8.3.5/konva.min.js"></script>
 </head>
 
 <body>
-    detect(file);
     <main class="container">
         <label class="custom-file-upload">
             <input id="file-upload" type="file" accept="image/*" />
@@ -17,10 +25,17 @@
             Upload image
         </label>
         <div id="image-container"></div>
+        <div id="canvas"></div>
+        <div id="buttons">
+            <button id="from-canvas">Detect from canvas</button>
+            <button id="export">Export as Image</button>
+            <button id="clear">Clear</button>
+        </div>
         <p id="status"></p>
         <p id="latex"></p>
     </main>
     <script src="index.js" type="module"></script>
+    <script src="canvas.js" type="module"></script>
 </body>
 
 </html>
