@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Texify demo</title>
+    <title>Texify handwritten demo</title>
     <script>
         window.MathJax = {
             tex: {
@@ -27,6 +27,12 @@
         </div>
         <p id="status"></p>
         <p id="latex"></p>
+        <div id="raw-container">
+
+            <p id="raw-latex"></p>
+            <button id="copy-button">&#x1F4CB;</button> <!-- Clipboard icon -->
+        </div>
+
     </main>
     <script src="index.js" type="module"></script>
     <script src="canvas.js" type="module"></script>
